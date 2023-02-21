@@ -1,0 +1,45 @@
+<odoo>
+    <data>
+
+        <!--Proveedor -->
+
+        <record id="proveedor_fruit" model="res.partner">
+            <field name="name">Apple Stephenson</field>
+        </record>
+
+        <record id="proveedor_meat" model="res.partner">
+            <field name="name">Meat Tolkien</field>
+        </record>        
+
+        <!-- Product Categories -->
+
+        <record id="category_fruit" model="market.product.category">
+            <field name="name">Fruit</field>
+            <field name="description">Fruits</field>
+        </record>
+
+        <record id="category_butcherShop" model="market.product.category">
+            <field name="name">ButcherShop</field>
+            <field name="description">Meat</field>
+        </record>        
+
+        <!-- products -->
+
+        <record id="product_apple" model="market.product">
+            <field name="name">Apple</field>
+            <field name="state">fresh</field>
+            <field name="date_release">2021-01-01</field>
+            <field name="category_id" ref="category_fruit"/>
+            <field name="proveedor_ids" eval="[(6, 0, [ ref('proveedor_fruit'), ])]"/>
+        </record>
+
+        <record id="product_ribeye" model="market.product">
+            <field name="name">Ribeye</field>
+            <field name="state">retired</field>
+            <field name="date_release">2021-01-02</field>
+            <field name="category_id" ref="category_butcherShop"/>
+            <field name="proveedor_ids" eval="[(6, 0, [ ref('proveedor_meat'), ])]"/>
+        </record>
+
+    </data>
+</odoo>
