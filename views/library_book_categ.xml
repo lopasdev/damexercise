@@ -23,6 +23,7 @@
                     <group>
                         <field name="parent_id"/>
                     </group>
+                    <field name="product_ids"/>
                 </group>
             </form>
         </field>
