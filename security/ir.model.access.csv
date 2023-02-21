@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+acl_lopan,market.lopan_default,model_market_lopan,,1,0,0,0
+acl_lopan_marketarian,market.lopan_marketarian,model_market_lopan,group_marketarian,1,1,1,1
+acl_market_member,access_market_member,model_market_member,base.group_user,1,1,1,1
+acl_lopan_category,market.lopan_category_default,model_market_lopan_category,,1,0,0,0
+acl_lopan_category_marketarian,market.lopan_category_marketarian,model_market_lopan_category,group_marketarian,1,1,1,1

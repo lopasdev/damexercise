@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id='market_lopan_action' model='ir.actions.act_window'>
+        <field name="name">market lopans</field>
+        <field name="res_model">market.lopan</field>
+        <field name="view_mode">kanban,tree,form,calendar</field>
+    </record>
+
+    <record id='market_lopan_calendar_action' model='ir.actions.act_window'>
+        <field name="name">market lopans</field>
+        <field name="res_model">market.lopan</field>
+        <field name="view_mode">calendar</field>
+    </record>
+
+
+    <menuitem name="My market" id="market_base_menu" />
+    <menuitem name="lopans" id="market_lopan_menu" parent="market_base_menu" action="market_lopan_action"/>
+    <menuitem name="Calendar" id="market_lopan_menu_calendar" parent="market_base_menu" action="market_lopan_calendar_action"/>
+
+    <!-- Calendar View -->
+    <record id="market_lopan_view_calendar" model="ir.ui.view">
+        <field name="name">market lopan Calendar</field>
+        <field name="model">market.lopan</field>
+        <field name="arch" type="xml">
+            <calendar string="Release Calendar" date_start="date_release" mode="month">
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record>
+
+    <!-- Kanban View -->
+    <record id="market_lopan_rent_view_kanban" model="ir.ui.view">
+        <field name="name">lopan Kanban</field>
+        <field name="model">market.lopan</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="state">
+                <field name="state" />
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <div class="oe_kanban_content">
+                                <div class="oe_kanban_card">
+                                    <div>
+                                        <i class="fa fa-tag"/>
+                                        <b>
+                                            <field name="category_id" />
+                                        </b>
+                                    </div>
+                                    <div class="text-muted">
+                                        <i class="fa fa-lopan"/>
+                                        <field name="name" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>    
+
+    <!-- Form View -->
+    <record id="market_lopan_view_form" model="ir.ui.view">
+        <field name="name">market lopan Form</field>
+        <field name="model">market.lopan</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="make_available" string="Make Available" type="object"/>
+                    <button name="make_borrowed"  string="Make Borrowed" type="object"/>
+                    <button name="make_lost"  string="Make Lost" type="object"/>
+                    <button name="log_all_market_members"  string="Log Members" type="object"/>
+                    <button name="create_categories" string="Create Categories" type="object"/>
+                    <button name="change_release_date" string="Update Date" type="object"/>
+                    <button name="find_lopan" string="Find lopan" type="object"/>
+                    <field name="state" widget="statusbar"/>
+                </header>
+                <group>
+                    <group>
+                        <field name="name"/>
+                        <field name="proveedor_ids" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="category_id"/>
+                        <field name="date_release"/>
+                    </group>
+                </group>
+            </form>
+        </field>
+    </record>
+
+    <!-- Tree(list) View -->
+    <record id="market_lopan_view_tree" model="ir.ui.view">
+        <field name="name">market lopan List</field>
+        <field name="model">market.lopan</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="date_release"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="market_lopan_view_search" model="ir.ui.view">
+        <field name="name">market lopan Search</field>
+        <field name="model">market.lopan</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="proveedor_ids"/>
+                <filter string="Without proveedors" name="without_proveedor" domain="[('proveedor_ids','=',False)]"/>
+                <filter string="Lost lopans" name="without_proveedor" domain="[('state','=','Lost')]"/>
+            </search>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <!-- Partners Extension -->
+
+    <record id="view_partner_proveedor" model="ir.ui.view">
+        <field name="name">proveedor</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <page name="internal_notes" position="before">
+                <page name="market_lopan" string="proveedores lopan">
+                <group>
+                    <field name="proveedores_product_ids"/>
+                </group>
+                </page>
+            </page>
+        </field>
+    </record>
+
+  </data>
+</odoo>
